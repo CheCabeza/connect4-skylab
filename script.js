@@ -174,10 +174,7 @@ function checkWinner (row, column,color) {
   checkBelowRight (row, column, color)
 
 
-  if (matchesH >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
-  else if (matchesD1 >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
-  else if (matchesD2 >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
-  else if (matchesV >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
+  if (matchesH >= 4 || matchesD1 >= 4 || matchesD2 >= 4 || matchesV >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
 
 }
 
