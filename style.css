@@ -1,0 +1,190 @@
+*{
+    margin: 0px;
+    background-color: chocolate;
+}
+
+.board {
+
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.column {
+
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    height: 72vh;
+    width: 8vw;
+
+}
+
+.column:hover .row{
+
+    background: rgb(10, 56, 84);
+}
+
+
+.row {
+    border: 1px solid black;
+    position: relative;
+    z-index: 3;
+    width: 8vw;
+    height: 12vh;
+    background: blue;
+    -webkit-mask:radial-gradient(circle closest-side, transparent 80%, #fff 80%);
+    
+}
+
+#box1x1 {
+
+    border-radius: 0px 0px 0px 15px;
+
+}
+
+#box1x6 {
+
+    border-radius: 15px 0px 0px 0px;
+
+}
+
+#box7x6 {
+
+    border-radius: 0px 15px 0px 0px;
+
+}
+
+#box7x1 {
+
+    border-radius: 0px 0px 15px 0px;
+
+}
+
+.piece {
+
+    position: absolute;
+    top:0;
+    width: 8vw;
+    height: 12vh;
+    clip-path: circle(36% at 50% 50%);
+
+}
+.hidden {
+    display: none;
+}
+
+.green{
+    background-color: green;
+}
+.red{
+    background-color: red;
+}
+
+.fall1 {
+    animation-name: fall-animation1;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    clip-path: circle(40% at 50% 50%);
+
+}
+
+@keyframes fall-animation1 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(14vh);
+  }
+}
+
+.fall2 {
+    animation-name: fall-animation2;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    clip-path: circle(40% at 50% 50%);
+}
+
+@keyframes fall-animation2 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(26vh);
+  }
+}
+
+.fall3 {
+    animation-name: fall-animation3;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    clip-path: circle(40% at 50% 50%);
+}
+
+@keyframes fall-animation3 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(38vh);
+  }
+}
+
+.fall4 {
+    animation-name: fall-animation4;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    clip-path: circle(40% at 50% 50%);
+}
+
+@keyframes fall-animation4 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(50vh);
+  }
+}
+
+.fall5 {
+    animation-name: fall-animation5;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    clip-path: circle(40% at 50% 50%);
+}
+
+@keyframes fall-animation5 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(62vh);
+  }
+}
+
+.fall6 {
+    animation-name: fall-animation6;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    clip-path: circle(40% at 50% 50%);
+}
+
+@keyframes fall-animation6 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(74vh);
+  }
+}
