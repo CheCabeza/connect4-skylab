@@ -72,15 +72,9 @@ function defaultPieceColor () {
 
 }
 
-
-
-
-
-
-
 function checkWinner (row, column,color) {
   
-  let matchesH = 1;
+  let matchesH =1;
   let matchesV = 1;
   let matchesD1 = 1;
   let matchesD2 = 1;
@@ -91,6 +85,7 @@ function checkWinner (row, column,color) {
 
     if (boardScore[row][column-1] !== color) return;
     matchesH++;
+    console.log(`H ${matchesH}`);
     return checkLeft(row, column-1, color);  
   }
 
@@ -103,75 +98,98 @@ function checkWinner (row, column,color) {
   
   const checkTopLeft = (row, column, color) => {
 
-    if (boardScore[row+1][column+1] !== color) {return;}
-    else {
-    matchesD1++;
-    console.log(`D1 ${matchesD1}`);
-    return checkTopLeft(row-1, column-1, color);  
-    }
+    if (Array.isArray(boardScore[row-1])) {
+
+      if (boardScore[row-1][column-1] !== color) {return true}
+
+      else { 
+      
+      matchesD1++;
+      console.log(`D1 ${matchesD1}`);
+      return checkTopLeft(row-1, column-1, color);  
+
+      }
+      
+    } 
   }
 
   const checkTopRight = (row, column, color) => {
 
     
-    if (boardScore[row+1][column+1] !== color) {return;}
-    else {
+    if (Array.isArray(boardScore[row-1])) {
 
+      if (boardScore[row-1][column+1] !== color) {return true}
+
+      else { 
+      
       matchesD2++;
       console.log(`D2 ${matchesD2}`);
       return checkTopRight(row-1, column+1, color);  
 
-    }
+      }
+      
+    } 
   }
 
   const checkBelowLeft = (row, column, color) => {
     
-     if (boardScore[row+1][column+1] !== color) {return;}
-      else {
+     if (Array.isArray(boardScore[row+1])) {
 
-        matchesD2++;
-        console.log(`D2 ${matchesD2}`);
-        return checkBelowLeft(row+1, column-1, color);  
+      if (boardScore[row+1][column-1] !== color) {return true}
+
+      else { 
+      
+      matchesD2++;
+      console.log(`D2 ${matchesD2}`);
+      return checkBelowLeft(row+1, column-1, color);  
 
       }
+      
+      
+    } 
   
   }
 
   const checkBelowRight = (row, column, color) => {
   
   
-    if (boardScore[row+1][column+1] !== color) {return;}
-    else {
+    if (Array.isArray(boardScore[row+1])) {
 
+      if (boardScore[row+1][column+1] !== color) {return true}
+
+      else { 
+      
       matchesD1++;
       console.log(`D1 ${matchesD1}`);
       return checkBelowRight(row+1, column+1, color);  
 
-    }
+      }
+      
+      
+    } 
 
   }
 
   const checkBelow = (row, column, color) => {
   
-    if (boardScore[row+1][column+1] !== color) {return;}
-    else {
-
-      matchesV++;
-      console.log(`V ${matchesV}`);
-      return checkBelowRight(row+1, column, color);  
-
-    }
-
+    if (Array.isArray(boardScore[row+1])) {
+      if (boardScore[row+1][column] !== color) {return true}
+      else {    
+        matchesV++;
+        console.log(`Vertical ${matchesV}`);
+        return checkBelow(row+1, column, color);  
+      }
+    } 
 }
 
 
-  checkLeft (row, column, color)
+  checkLeft (row, column, color);
   checkRight (row, column, color);
-  checkBelow (row, column, color)
-  checkTopRight (row, column, color)
-  checkTopLeft (row, column, color)
-  checkBelowLeft (row, column, color)
-  checkBelowRight (row, column, color)
+  checkBelow (row, column, color);
+  checkTopRight (row, column, color);
+  checkTopLeft (row, column, color);
+  checkBelowLeft (row, column, color);
+  checkBelowRight (row, column, color);
 
 
   if (matchesH >= 4 || matchesD1 >= 4 || matchesD2 >= 4 || matchesV >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
