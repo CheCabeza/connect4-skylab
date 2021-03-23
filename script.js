@@ -8,6 +8,45 @@ column = document.querySelectorAll(".column").forEach(item => {
 
 let boardScore =[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]];
 
+function showModal(id) {
+
+  let container = document.getElementById(id);
+  let box = container.querySelector(".modalWindow");
+
+  box.style.transition = "none";
+  box.style.transform = "scale(0,0)";
+
+  requestAnimationFrame (function (){
+
+    box.style.transition = "all 0.5s ease";
+    box.style.transform = "scale (1,1)";
+
+  });
+
+  container.style.pointerEvents = "auto";
+  container.style.opacity = 1;
+}
+
+function oneVsOne(id){
+
+  let container = document.getElementById(id);
+
+  container.style.opacity = 0;
+  container.style.pointerEvents = "none";
+
+
+}
+
+function oneVsCpu(id){
+
+  let container = document.getElementById(id);
+
+  container.style.opacity = 0;
+  container.style.pointerEvents = "none";
+
+
+}
+
 
 function fallFunction () {
 
@@ -133,5 +172,83 @@ function checkWinner (row, column, color) {
   
 }
 
-  
 
+
+// function checkPosibilities (row, column, color) {
+  
+//   let matchesH = 1;
+//   let matchesV = 1;
+//   let matchesD1 = 1;
+//   let matchesD2 = 1;
+  
+//   const possibilitiesTogether = (row, column, color, matches, direction) => {
+
+//     const findTopOne = (column, row=5) => {
+
+//       if (!Array.isArray(boardScore[row])) {return false}
+//       else if (boardScore[row][column] === 0) {return row}
+
+//       else {
+
+//         return findTopOne (column, row-1);
+
+//       }
+
+//     }
+
+    
+//     if (Array.isArray(boardScore[row])) {
+      
+//       ////////////
+      
+//       if (findTopOne) {return true}
+      
+//       else { 
+        
+//         switch (matches) {
+          
+//           case "H": 
+//             matchesH += 1; 
+//           break;
+//           case "V": 
+//             matchesV += 1; 
+//           break;
+//           case "D2": 
+//             matchesD2 += 1; 
+//           break;
+//           case "D1": 
+//             matchesD1 += 1; 
+//           break;
+          
+//         }
+
+        
+//         switch (direction) {
+          
+//           case "L": return checkPieces (row, column-1, color, "H", "L"); 
+//           case "R": return checkPieces (row, column+1, color, "H", "R");
+//           case "B": return checkPieces (row+1, column, color, "V", "B");
+//           case "TR": return checkPieces (row-1, column+1, color, "D2", "TR");
+//           case "TL": return checkPieces (row-1, column-1, color, "D1", "TL");
+//           case "BL": return checkPieces (row+1, column-1, color, "D2", "BL");
+//           case "BR": return checkPieces (row+1, column+1, color, "D1", "BR");
+          
+//         }
+        
+//       }
+      
+//     } 
+//   }
+  
+  
+//   checkPieces (row, column-1, color, "H", "L"); //check pieces to the left
+//   checkPieces (row, column+1, color, "H", "R"); //check pieces to the right
+//   checkPieces (row+1, column, color, "V", "B"); //check pieces below
+//   checkPieces (row-1, column+1, color, "D2", "TR"); //check pieces to the top right
+//   checkPieces (row-1, column-1, color, "D1", "TL"); //check pieces to the top left
+//   checkPieces (row+1, column-1, color, "D2", "BL"); //check pieces below left
+//   checkPieces (row+1, column+1, color, "D1", "BR"); //check pieces below right
+  
+//   if (matchesH >= 4 ||matchesV >= 4 ||matchesD2 >= 4 ||matchesD1 >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
+  
+// }
