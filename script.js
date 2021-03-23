@@ -27,6 +27,10 @@ function showModal(id) {
   container.style.opacity = 1;
 }
 
+function coinFlip() {
+  return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
+}
+
 function oneVsOne(id){
 
   let container = document.getElementById(id);

@@ -19,18 +19,39 @@ body{
 
 .modalWindow {
 
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-width: 5px 5px 5px rgba (0,0,0,0.3) ;
   position: absolute;
-  top: calc(50% - 100px);
-  left: calc(50% - 100px);
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
   padding: 10px;
   background: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
+}
+
+.headstails {
+
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  justify-content: space-evenly;
+
+}
+
+.coin:hover {
+
+  opacity: 0.5;
+
+}
+
+.coin:focus {     
+
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);  
+  
 }
 
 .button {
