@@ -79,120 +79,48 @@ function checkWinner (row, column,color) {
   let matchesD1 = 1;
   let matchesD2 = 1;
 
-  console.log(`${row} --- ${column} --- ${color}`);
-
-  const checkLeft = (row, column, color) => {
-
-    if (boardScore[row][column-1] !== color) return;
-    matchesH++;
-    console.log(`H ${matchesH}`);
-    return checkLeft(row, column-1, color);  
-  }
-
-  const checkRight = (row, column, color) => {
-    if (boardScore[row][column+1] !== color) return;;
-    matchesH++;
-    console.log(`horizontal ${matchesH}`);
-    return checkRight(row, column+1, color);  
-  }
   
-  const checkTopLeft = (row, column, color) => {
+  const checkPieces = (row, column, color, matches, direction) => {
 
-    if (Array.isArray(boardScore[row-1])) {
+    if (Array.isArray(boardScore[row])) {
 
-      if (boardScore[row-1][column-1] !== color) {return true}
+      if (boardScore[row][column] !== color) {return true}
 
       else { 
       
-      matchesD1++;
-      console.log(`D1 ${matchesD1}`);
-      return checkTopLeft(row-1, column-1, color);  
+      matches++;
+      console.log(`${matches}`);
+      if (matches >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
+
+        switch (direction) {
+
+          case "L": return checkPieces (row, column-1, color, matches, "L"); 
+          case "R": return checkPieces (row, column-1, color, matches, "R");
+          case "B": return checkPieces (row+1, column, color, matches, "B");
+          case "TR": return checkPieces (row-1, column+1, color, matches, "TR");
+          case "TL": return checkPieces (row-1, column-1, color, matches, "TL");
+          case "BL": return checkPieces (row+1, column-1, color, matches, "BL");
+          case "BR": return checkPieces (row+1, column+1, color, matches, "BR");
+
+        }
+  
 
       }
       
     } 
   }
 
-  const checkTopRight = (row, column, color) => {
 
-    
-    if (Array.isArray(boardScore[row-1])) {
-
-      if (boardScore[row-1][column+1] !== color) {return true}
-
-      else { 
-      
-      matchesD2++;
-      console.log(`D2 ${matchesD2}`);
-      return checkTopRight(row-1, column+1, color);  
-
-      }
-      
-    } 
-  }
-
-  const checkBelowLeft = (row, column, color) => {
-    
-     if (Array.isArray(boardScore[row+1])) {
-
-      if (boardScore[row+1][column-1] !== color) {return true}
-
-      else { 
-      
-      matchesD2++;
-      console.log(`D2 ${matchesD2}`);
-      return checkBelowLeft(row+1, column-1, color);  
-
-      }
-      
-      
-    } 
+checkPieces (row, column-1, color, matchesH, "L"); //check pieces to the left
+checkPieces (row, column+1, color, matchesH, "R"); //check pieces to the right
+checkPieces (row+1, column, color, matchesV, "B"); //check pieces below
+checkPieces (row-1, column+1, color, matchesD2, "TR"); //check pieces to the top right
+checkPieces (row-1, column-1, color, matchesD1, "TL"); //check pieces to the top left
+checkPieces (row+1, column-1, color, matchesD2, "BL"); //check pieces below left
+checkPieces (row+1, column+1, color, matchesD1, "BR"); //checkk pieces below right
   
-  }
-
-  const checkBelowRight = (row, column, color) => {
-  
-  
-    if (Array.isArray(boardScore[row+1])) {
-
-      if (boardScore[row+1][column+1] !== color) {return true}
-
-      else { 
-      
-      matchesD1++;
-      console.log(`D1 ${matchesD1}`);
-      return checkBelowRight(row+1, column+1, color);  
-
-      }
-      
-      
-    } 
-
-  }
-
-  const checkBelow = (row, column, color) => {
-  
-    if (Array.isArray(boardScore[row+1])) {
-      if (boardScore[row+1][column] !== color) {return true}
-      else {    
-        matchesV++;
-        console.log(`Vertical ${matchesV}`);
-        return checkBelow(row+1, column, color);  
-      }
-    } 
-}
 
 
-  checkLeft (row, column, color);
-  checkRight (row, column, color);
-  checkBelow (row, column, color);
-  checkTopRight (row, column, color);
-  checkTopLeft (row, column, color);
-  checkBelowLeft (row, column, color);
-  checkBelowRight (row, column, color);
-
-
-  if (matchesH >= 4 || matchesD1 >= 4 || matchesD2 >= 4 || matchesV >= 4) {console.log (`EL JUGADOR ${color} ganó!!!`)}
 
 }
 
